@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goja", "Goja\Goja.csproj", "{50EE6A06-E3E8-43CF-A10C-58CFBAD15388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GojaTest", "GojaTest\GojaTest.csproj", "{B0E098C2-786A-4A26-B76F-B277E3209DDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50EE6A06-E3E8-43CF-A10C-58CFBAD15388}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{50EE6A06-E3E8-43CF-A10C-58CFBAD15388}.Debug|Win32.Build.0 = Debug|Any CPU
+		{50EE6A06-E3E8-43CF-A10C-58CFBAD15388}.Release|Win32.ActiveCfg = Release|Any CPU
+		{50EE6A06-E3E8-43CF-A10C-58CFBAD15388}.Release|Win32.Build.0 = Release|Any CPU
+		{B0E098C2-786A-4A26-B76F-B277E3209DDD}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{B0E098C2-786A-4A26-B76F-B277E3209DDD}.Debug|Win32.Build.0 = Debug|Any CPU
+		{B0E098C2-786A-4A26-B76F-B277E3209DDD}.Release|Win32.ActiveCfg = Release|Any CPU
+		{B0E098C2-786A-4A26-B76F-B277E3209DDD}.Release|Win32.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

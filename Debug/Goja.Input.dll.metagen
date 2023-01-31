@@ -1,0 +1,95 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Goja.Input, Version=1.0.*, Culture=Инвариантный язык (Инвариантная страна): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class GojaCPP.VECTOR2F: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Single, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Fields:
+    Single X : Public
+    Single Y : Public
+  Methods:
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class Goja.Input: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetGlobalMousePosition(): PrivateScope, Public, Static, HideBySig
+    IsKeyDown(Keys): PrivateScope, Public, Static, HideBySig
+    IsKeyUp(Keys): PrivateScope, Public, Static, HideBySig
+Struct Goja.Keys: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    UInt32 value__ : Public, SpecialName, RTSpecialName
+    Goja.Keys A = 65 : Public, Static, Literal, HasDefault
+    Goja.Keys C = 67 : Public, Static, Literal, HasDefault
+    Goja.Keys D = 68 : Public, Static, Literal, HasDefault
+    Goja.Keys E = 69 : Public, Static, Literal, HasDefault
+    Goja.Keys F = 70 : Public, Static, Literal, HasDefault
+    Goja.Keys G = 71 : Public, Static, Literal, HasDefault
+    Goja.Keys H = 72 : Public, Static, Literal, HasDefault
+    Goja.Keys I = 73 : Public, Static, Literal, HasDefault
+    Goja.Keys J = 74 : Public, Static, Literal, HasDefault
+    Goja.Keys L = 76 : Public, Static, Literal, HasDefault
+    Goja.Keys M = 77 : Public, Static, Literal, HasDefault
+    Goja.Keys N = 78 : Public, Static, Literal, HasDefault
+    Goja.Keys O = 79 : Public, Static, Literal, HasDefault
+    Goja.Keys P = 80 : Public, Static, Literal, HasDefault
+    Goja.Keys Q = 81 : Public, Static, Literal, HasDefault
+    Goja.Keys R = 82 : Public, Static, Literal, HasDefault
+    Goja.Keys S = 83 : Public, Static, Literal, HasDefault
+    Goja.Keys T = 84 : Public, Static, Literal, HasDefault
+    Goja.Keys U = 85 : Public, Static, Literal, HasDefault
+    Goja.Keys V = 86 : Public, Static, Literal, HasDefault
+    Goja.Keys W = 87 : Public, Static, Literal, HasDefault
+    Goja.Keys X = 88 : Public, Static, Literal, HasDefault
+    Goja.Keys Y = 89 : Public, Static, Literal, HasDefault
+    Goja.Keys Z = 90 : Public, Static, Literal, HasDefault
+    Goja.Keys Plus = 43 : Public, Static, Literal, HasDefault
+    Goja.Keys Minus = 45 : Public, Static, Literal, HasDefault
+    Goja.Keys Space = 32 : Public, Static, Literal, HasDefault
+    Goja.Keys One = 49 : Public, Static, Literal, HasDefault
+    Goja.Keys Two = 50 : Public, Static, Literal, HasDefault
+    Goja.Keys Three = 51 : Public, Static, Literal, HasDefault
+    Goja.Keys Four = 52 : Public, Static, Literal, HasDefault
+    Goja.Keys Five = 53 : Public, Static, Literal, HasDefault
+    Goja.Keys Six = 54 : Public, Static, Literal, HasDefault
+    Goja.Keys Seven = 55 : Public, Static, Literal, HasDefault
+    Goja.Keys Eigth = 56 : Public, Static, Literal, HasDefault
+    Goja.Keys Nine = 57 : Public, Static, Literal, HasDefault
+    Goja.Keys Zero = 48 : Public, Static, Literal, HasDefault
+    Goja.Keys None = 45 : Public, Static, Literal, HasDefault
+    Goja.Keys Escape = 27 : Public, Static, Literal, HasDefault
+    Goja.Keys Cancel = 3 : Public, Static, Literal, HasDefault
+    Goja.Keys Enter = 13 : Public, Static, Literal, HasDefault
+    Goja.Keys Shift = 16 : Public, Static, Literal, HasDefault
+    Goja.Keys Control = 17 : Public, Static, Literal, HasDefault
+    Goja.Keys CapsLock = 20 : Public, Static, Literal, HasDefault
+    Goja.Keys Pause = 19 : Public, Static, Literal, HasDefault
+    Goja.Keys Alt = 18 : Public, Static, Literal, HasDefault
+    Goja.Keys End = 35 : Public, Static, Literal, HasDefault
+    Goja.Keys Insert = 45 : Public, Static, Literal, HasDefault
+    Goja.Keys Delete = 46 : Public, Static, Literal, HasDefault
+    Goja.Keys Down = 40 : Public, Static, Literal, HasDefault
+    Goja.Keys Left = 37 : Public, Static, Literal, HasDefault
+    Goja.Keys Right = 39 : Public, Static, Literal, HasDefault
+    Goja.Keys Up = 38 : Public, Static, Literal, HasDefault
+    Goja.Keys LMB = 1 : Public, Static, Literal, HasDefault
+    Goja.Keys RMB = 2 : Public, Static, Literal, HasDefault
+    Goja.Keys MMB = 4 : Public, Static, Literal, HasDefault
+    Goja.Keys Button1X = 5 : Public, Static, Literal, HasDefault
+    Goja.Keys Button2X = 6 : Public, Static, Literal, HasDefault
