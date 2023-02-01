@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using GojaCPP;
 
 namespace Goja.Utils
 {
@@ -23,7 +22,7 @@ namespace Goja.Utils
             byte[] data = stream.ToArray();
             return data;
         }
-        public static Vector2 ToVector2(VECTOR2F obj)
+        public static Vector2 ToVector2(GojaCPP.VECTOR2F obj)
 		{
 			return new Vector2(obj.X, obj.Y);
 		}

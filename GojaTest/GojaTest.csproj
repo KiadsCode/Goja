@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Goja.Input">
-      <HintPath>..\Debug\Goja.Input.dll</HintPath>
+      <HintPath>..\Goja.Input\Debug\Goja.Input.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK">
       <HintPath>..\..\..\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.dll</HintPath>

@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Goja.Input">
-      <HintPath>..\Debug\Goja.Input.dll</HintPath>
+      <HintPath>..\Goja.Input\Debug\Goja.Input.dll</HintPath>
     </Reference>
     <Reference Include="irrKlang.NET4">
       <HintPath>..\..\..\..\Рабочий стол\irrKlang.NET4.dll</HintPath>

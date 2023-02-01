@@ -1,6 +1,6 @@
 ﻿using System;
 using Goja;
-using Goja.Audio;
+using Goja.Input;
 using Goja.Graphics;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -16,7 +16,12 @@ namespace GojaTest
         HitBox box;
         public GGame()
 		{
+		}
+        
+		protected override void Initialize()
+		{
 			Content.RootDirectory = "Content/";
+			base.Initialize();
 		}
 		
 		protected override void BeginDraw()
@@ -39,28 +44,28 @@ namespace GojaTest
 		
 		protected override void Update(double elapsed)
 		{
-			if(Input.IsKeyDown(Keys.Escape))
+			if(Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
-			if(Input.IsKeyDown(Keys.A))
+			if(Keyboard.GetState().IsKeyDown(Keys.A))
 				posXX.X -= 6;
-			if(Input.IsKeyDown(Keys.D))
+			if(Keyboard.GetState().IsKeyDown(Keys.D))
 				posXX.X += 6;
-			if(Input.IsKeyDown(Keys.S))
+			if(Keyboard.GetState().IsKeyDown(Keys.S))
 				posXX.Y -= 6;
-			if(Input.IsKeyDown(Keys.W))
+			if(Keyboard.GetState().IsKeyDown(Keys.W))
 				posXX.Y += 6;
 			
 			boxB = new HitBox((int)Vector2.Zero.X, (int)Vector2.Zero.X, ds.Bitmap.Width, ds.Bitmap.Height);
 			box = new HitBox((int)posXX.X, (int)posXX.Y, texture.Bitmap.Width, texture.Bitmap.Height);
 			
 			
-			if(Input.IsKeyDown(Keys.Down))
+			if(Keyboard.GetState().IsKeyDown(Keys.Down))
 				SetCameraPosition(new Vector2(Camera.Position.X, Camera.Position.Y + 2));
-			if(Input.IsKeyDown(Keys.Left))
+			if(Keyboard.GetState().IsKeyDown(Keys.Left))
 				SetCameraPosition(new Vector2(Camera.Position.X + 2, Camera.Position.Y));
-			if(Input.IsKeyDown(Keys.Right))
+			if(Keyboard.GetState().IsKeyDown(Keys.Right))
 				SetCameraPosition(new Vector2(Camera.Position.X - 2, Camera.Position.Y));
-			if(Input.IsKeyDown(Keys.Up))
+			if(Keyboard.GetState().IsKeyDown(Keys.Up))
 				SetCameraPosition(new Vector2(Camera.Position.X, Camera.Position.Y - 2));
 				
 			base.Update(elapsed);

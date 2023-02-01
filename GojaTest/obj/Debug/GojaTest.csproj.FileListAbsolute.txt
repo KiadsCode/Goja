@@ -13,7 +13,6 @@ C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bi
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\ikpMP3.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Properties\expl.wav
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\irrKlang.NET4.dll
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Goja.Input.pdb
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csprojResolveAssemblyReference.cache
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\BackGroundTile.png
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\rs.png
