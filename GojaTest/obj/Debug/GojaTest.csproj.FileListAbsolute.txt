@@ -14,8 +14,6 @@ C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bi
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Properties\expl.wav
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\irrKlang.NET4.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Goja.Input.pdb
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.Properties.Resources.resources
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csproj.GenerateResource.cache
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\trollFace.png
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\BackGroundTile.png
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csprojResolveAssemblyReference.cache
+C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\BackGroundTile.png
+C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\rs.png

@@ -34,7 +34,7 @@ namespace Goja.Content
             	if(typeof(T) == typeof(Texture2D)) 
             	{
 					Texture2D texture = new Texture2D();
-					texture.Load(TitleContainer.OpenStream(assetName));
+					texture.Load(TitleContainer.OpenStream(_rootDirectory + assetName));
 					obj = texture;
 					_contentFilesContainer.Add(assetName, obj);
 				}

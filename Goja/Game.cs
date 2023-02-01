@@ -21,6 +21,19 @@ namespace Goja
 		private const double UpdateRate = 60.0;
 		private const double FrameRate = 60.0;
 		private GameWindow _gameWindow;
+		private Camera _camera = new Camera();
+		
+		public Camera Camera
+		{
+			get
+			{
+				return _camera;
+			}
+			protected set
+			{
+				_camera = value;
+			}
+		}
 
 		public float FPS
 		{
@@ -117,6 +130,12 @@ namespace Goja
 				_gameWindow.Title = value;
 			}
 		}
+		
+		protected void SetCameraPosition(Vector2 position)
+		{
+			Camera.Position = position;
+			UpdateViewport();
+		}
 
 		public GameComponentsCollection Components { get { return _components; } }
 
@@ -150,7 +169,7 @@ namespace Goja
 
 		private void UpdateViewport()
 		{
-			GL.Viewport(0, 0, _gameWindow.Width, _gameWindow.Height);
+			GL.Viewport((int)_camera.Position.X, (int)_camera.Position.Y, _gameWindow.Width, _gameWindow.Height);
 		}
 
 		private void ResizePrivate(object sender, EventArgs e)
