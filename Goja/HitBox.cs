@@ -7,6 +7,7 @@
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
+using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 
 namespace Goja
@@ -73,12 +74,12 @@ namespace Goja
 			GL.Vertex2(right, top);
 			GL.Color3(1.0f, 1.0f, 1.0f);
 		}
-		public void Draw(Vector3 color, Game game, bool linesType)
+		public void Draw(Vector3 color, Size gameSize, bool linesType)
 		{
-			float left = Left / game.Width;
-			float top = Top / game.Height;
-			float bottom = Bottom / game.Height;
-			float right = Right / game.Width;
+			float left = Left / gameSize.Width;
+			float top = Top / gameSize.Height;
+			float bottom = Bottom / gameSize.Height;
+			float right = Right / gameSize.Width;
 			if(linesType)
 			{
 				GL.LineWidth(3);

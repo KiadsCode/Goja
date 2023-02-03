@@ -10,7 +10,7 @@ namespace GojaTest
 	public class GGame : Game
 	{
 		HitBox boxB;
-		private SpriteBatch spriteBatch;
+		HitBox boxC = new HitBox(32, -192, 86, 86);
         private Texture2D texture;
         private Texture2D ds;
         HitBox box;
@@ -35,7 +35,7 @@ namespace GojaTest
 		
 		protected override void LoadContent()
 		{
-			spriteBatch = new SpriteBatch(this);
+			UpdateIcon("Game.ico");
 			
 			texture = Content.Load<Texture2D>(@"rs.png");
 			ds = Content.Load<Texture2D>(@"BackGroundTile.png");
@@ -54,10 +54,9 @@ namespace GojaTest
 				posXX.Y -= 6;
 			if(Keyboard.GetState().IsKeyDown(Keys.W))
 				posXX.Y += 6;
-			
-			boxB = new HitBox((int)Vector2.Zero.X, (int)Vector2.Zero.X, ds.Bitmap.Width, ds.Bitmap.Height);
+
+            boxB = new HitBox((int)Vector2.Zero.X, (int)Vector2.Zero.X, ds.Bitmap.Width, ds.Bitmap.Height);
 			box = new HitBox((int)posXX.X, (int)posXX.Y, texture.Bitmap.Width, texture.Bitmap.Height);
-			
 			
 			if(Keyboard.GetState().IsKeyDown(Keys.Down))
 				SetCameraPosition(new Vector2(Camera.Position.X, Camera.Position.Y + 2));
@@ -67,7 +66,7 @@ namespace GojaTest
 				SetCameraPosition(new Vector2(Camera.Position.X - 2, Camera.Position.Y));
 			if(Keyboard.GetState().IsKeyDown(Keys.Up))
 				SetCameraPosition(new Vector2(Camera.Position.X, Camera.Position.Y - 2));
-				
+			
 			base.Update(elapsed);
 		}
 		
@@ -75,13 +74,15 @@ namespace GojaTest
 		
 		protected override void Draw(double elapsed)
 		{
-			spriteBatch.Draw(ds, Vector2.Zero, new Vector3(1.0f, 1.0f, 1.0f));
+			SpriteBatch.Draw(ds, Vector2.Zero, new Vector3(1.0f, 1.0f, 1.0f));
 			DrawTriangle();
-			spriteBatch.Draw(texture, posXX, new Vector3(1.0f,1.0f,1.0f));
+			SpriteBatch.Draw(texture, posXX, new Vector3(1.0f, 1.0f, 1.0f));
 			
 			if(box.Intersects(boxB))
-				boxB.Draw(new Vector3(1.0f, 0.0f, 0.0f), this, false);
-			base.Draw(elapsed);
+				boxB.Draw(new Vector3(1.0f, 0.0f, 0.0f), new System.Drawing.Size(Width, Height), false);
+            if (box.Intersects(boxC))
+                boxC.Draw(new Vector3(1.0f, 0.0f, 0.0f), new System.Drawing.Size(Width, Height), true);
+            base.Draw(elapsed);
 		}
 		
 		public void DrawTriangle()
@@ -90,7 +91,7 @@ namespace GojaTest
             GL.Color3(1.0f, 1.0f, 0.0f);
             GL.Vertex2(0.0, 0.0);
             GL.Color3(1.0f, 0.0f, 0.0f);
-            GL.Vertex2(0.3, 0.5);
+            GL.Vertex2(0.325, 0.5);
             GL.Color3(1.0f, 0.0f, 1.0f);
             GL.Vertex2(0.65, 0.0);
             GL.Color3(1.0f, 1.0f, 1.0f);

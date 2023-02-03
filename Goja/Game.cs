@@ -13,6 +13,8 @@ namespace Goja
 	/// </summary>
 	public class Game
 	{
+		private SpriteBatch _spriteBatch;
+		public const string GOJA_VERSION = "1.0.0";
 		private ContentManager _contentManager;
 		private float _frameTime = 0;
 		private float _fpsRaw = 0;
@@ -114,6 +116,14 @@ namespace Goja
 			_gameWindow.Exit();
 		}
 
+		public SpriteBatch SpriteBatch
+		{
+			get
+			{
+				return _spriteBatch;
+			}
+		}
+
 		public bool IsVSync
 		{
 			get;
@@ -156,10 +166,6 @@ namespace Goja
 
 		protected virtual void UnloadContent()
 		{
-			foreach (Texture2D item in GraphicsShared.Textures)
-			{
-				item.Unload();
-			}
 			_contentManager.Unload();
 		}
 
@@ -178,6 +184,7 @@ namespace Goja
 			GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
             GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
+			_spriteBatch = new SpriteBatch(this);
         }
 
 		private void InitializePrivate(object sender, EventArgs e)
@@ -220,15 +227,32 @@ namespace Goja
 			GL.Hint(HintTarget.PerspectiveCorrectionHint, HintMode.Nicest);
 			LoadContent();
 		}
-
+		
+		public System.Drawing.Icon Icon
+		{
+			get
+			{
+				return _gameWindow.Icon;
+			}
+		}
+		
 		protected virtual void LoadContent()
 		{
 			BeginDraw();
+		}
+		
+		protected void UpdateIcon(string file)
+		{			
+			_gameWindow.Icon = new System.Drawing.Icon(TitleContainer.OpenStream(file));
 		}
 
 		public void Run()
 		{
 			Content = new ContentManager(@"");
+			_spriteBatch = new SpriteBatch(this);
+			
+			Console.WriteLine("Goja version: " + GOJA_VERSION);
+			
 			_gameWindow.Run(UpdateRate, FrameRate);
 		}
 	}
