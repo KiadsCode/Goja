@@ -14,7 +14,7 @@ namespace Goja
 	public class Game
 	{
 		private SpriteBatch _spriteBatch;
-		public const string GOJA_VERSION = "1.0.0";
+		public const string GOJA_VERSION = "1.0.5";
 		private ContentManager _contentManager;
 		private float _frameTime = 0;
 		private float _fpsRaw = 0;
@@ -251,7 +251,7 @@ namespace Goja
 			Content = new ContentManager(@"");
 			_spriteBatch = new SpriteBatch(this);
 			
-			Console.WriteLine("Goja version: " + GOJA_VERSION);
+			Console.WriteLine("Goja API version: " + GOJA_VERSION);
 			
 			_gameWindow.Run(UpdateRate, FrameRate);
 		}
