@@ -49,5 +49,38 @@ namespace Goja.Content
 		{
 			_files.Add(contentFileName,contentFile);
 		}
+		
+		#region Equals and GetHashCode implementation
+		public override bool Equals(object obj)
+		{
+			ContentFilesContainer other = obj as ContentFilesContainer;
+				if (other == null)
+					return false;
+						return object.Equals(this._files, other._files);
+		}
+
+		public override int GetHashCode()
+		{
+			int hashCode = 0;
+			unchecked {
+				if (_files != null)
+					hashCode += 1000000007 * _files.GetHashCode();
+			}
+			return hashCode;
+		}
+
+		public static bool operator ==(ContentFilesContainer lhs, ContentFilesContainer rhs) {
+			if (ReferenceEquals(lhs, rhs))
+				return true;
+			if (ReferenceEquals(lhs, null) || ReferenceEquals(rhs, null))
+				return false;
+			return lhs.Equals(rhs);
+		}
+
+		public static bool operator !=(ContentFilesContainer lhs, ContentFilesContainer rhs) {
+			return !(lhs == rhs);
+		}
+
+		#endregion
 	}
 }

@@ -78,5 +78,40 @@ namespace Goja.Content
         }
 
         public string RootDirectory { get { return _rootDirectory; } set { _rootDirectory = value; } }
+        
+		#region Equals and GetHashCode implementation
+		public override bool Equals(object obj)
+		{
+			ContentManager other = obj as ContentManager;
+				if (other == null)
+					return false;
+						return object.Equals(this._contentFilesContainer, other._contentFilesContainer) && this._rootDirectory == other._rootDirectory;
+		}
+
+		public override int GetHashCode()
+		{
+			int hashCode = 0;
+			unchecked {
+				if (_contentFilesContainer != null)
+					hashCode += 1000000007 * _contentFilesContainer.GetHashCode();
+				if (_rootDirectory != null)
+					hashCode += 1000000009 * _rootDirectory.GetHashCode();
+			}
+			return hashCode;
+		}
+
+		public static bool operator ==(ContentManager lhs, ContentManager rhs) {
+			if (ReferenceEquals(lhs, rhs))
+				return true;
+			if (ReferenceEquals(lhs, null) || ReferenceEquals(rhs, null))
+				return false;
+			return lhs.Equals(rhs);
+		}
+
+		public static bool operator !=(ContentManager lhs, ContentManager rhs) {
+			return !(lhs == rhs);
+		}
+
+		#endregion
     }
 }

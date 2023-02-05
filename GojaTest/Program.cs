@@ -14,13 +14,16 @@ namespace GojaTest
         private Texture2D texture;
         private Texture2D ds;
         HitBox box;
-        public GGame()
-		{
-		}
         
 		protected override void Initialize()
 		{
 			Content.RootDirectory = "Content/";
+			Title = "Goja engine test";
+			world = new World(this);
+			go = new GameObject(this, world);
+			go.PhysicBody.UpdateMass(100);
+			world.UpdateGravityValue(new Vector2(0, 3));
+			Components.Add(world);
 			base.Initialize();
 		}
 		
@@ -41,34 +44,34 @@ namespace GojaTest
 			ds = Content.Load<Texture2D>(@"BackGroundTile.png");
 			base.LoadContent();
 		}
+		KeyboardState ks;
+		KeyboardState ksOld;
+		GameObject go;
+		World world;
 		
 		protected override void Update(double elapsed)
 		{
-			if(Keyboard.GetState().IsKeyDown(Keys.Escape))
-				Exit();
-			if(Keyboard.GetState().IsKeyDown(Keys.A))
-				posXX.X -= 6;
-			if(Keyboard.GetState().IsKeyDown(Keys.D))
-				posXX.X += 6;
-			if(Keyboard.GetState().IsKeyDown(Keys.S))
-				posXX.Y -= 6;
-			if(Keyboard.GetState().IsKeyDown(Keys.W))
-				posXX.Y += 6;
-
+			ks = Keyboard.GetState();
             boxB = new HitBox((int)Vector2.Zero.X, (int)Vector2.Zero.X, ds.Bitmap.Width, ds.Bitmap.Height);
-			box = new HitBox((int)posXX.X, (int)posXX.Y, texture.Bitmap.Width, texture.Bitmap.Height);
+            box = new HitBox((int)go.PhysicBody.Transform.X, (int)go.PhysicBody.Transform.Y, texture.Bitmap.Width, texture.Bitmap.Height);
+            
+            if (ks.IsKeyDown(Keys.Escape))
+				Exit();
+			if(ks.IsKeyDown(Keys.A))
+				go.PhysicBody.Transform.X -= 6;
+			if(ks.IsKeyDown(Keys.D))
+				go.PhysicBody.Transform.X += 6;
+			if (ks.IsKeyDown(Keys.Space) && ksOld.IsKeyUp(Keys.Space) || box.Intersects(boxB))
+				go.PhysicBody.SetImpulse(new Vector2(0, -5));
+			if(ks.IsKeyDown(Keys.Q) && ksOld.IsKeyUp(Keys.Q))
+				go.PhysicBody.Enabled = !go.PhysicBody.Enabled;
 			
-			if(Keyboard.GetState().IsKeyDown(Keys.Down))
-				SetCameraPosition(new Vector2(Camera.Position.X, Camera.Position.Y + 2));
-			if(Keyboard.GetState().IsKeyDown(Keys.Left))
-				SetCameraPosition(new Vector2(Camera.Position.X + 2, Camera.Position.Y));
-			if(Keyboard.GetState().IsKeyDown(Keys.Right))
-				SetCameraPosition(new Vector2(Camera.Position.X - 2, Camera.Position.Y));
-			if(Keyboard.GetState().IsKeyDown(Keys.Up))
-				SetCameraPosition(new Vector2(Camera.Position.X, Camera.Position.Y - 2));
-			
+
+			ksOld = Keyboard.GetState();
 			base.Update(elapsed);
 		}
+
+		float grav = 0.0f;
 		
 		Vector2 posXX = new Vector2(-210.0f, 0.0f);
 		
@@ -76,12 +79,12 @@ namespace GojaTest
 		{
 			SpriteBatch.Draw(ds, Vector2.Zero, new Vector3(1.0f, 1.0f, 1.0f));
 			DrawTriangle();
-			SpriteBatch.Draw(texture, posXX, new Vector3(1.0f, 1.0f, 1.0f));
+			SpriteBatch.Draw(texture, go.PhysicBody.Transform, new Vector3(1.0f, 1.0f, 1.0f));
 			
 			if(box.Intersects(boxB))
-				boxB.Draw(new Vector3(1.0f, 0.0f, 0.0f), new System.Drawing.Size(Width, Height), false);
+            	SpriteBatch.DrawHitBox(boxB, new Vector3(1.0f, 0.0f, 0.0f), false);
             if (box.Intersects(boxC))
-                boxC.Draw(new Vector3(1.0f, 0.0f, 0.0f), new System.Drawing.Size(Width, Height), true);
+            	SpriteBatch.DrawHitBox(boxC, new Vector3(1.0f, 0.0f, 0.0f), true);
             base.Draw(elapsed);
 		}
 		

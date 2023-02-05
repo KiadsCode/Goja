@@ -40,5 +40,39 @@ namespace Goja
 			this.Y = y;
 			this.Z = z;
 		}
+		
+		#region Equals and GetHashCode implementation
+		public override bool Equals(object obj)
+		{
+			Vector3 other = obj as Vector3;
+				if (other == null)
+					return false;
+						return object.Equals(this.X, other.X) && object.Equals(this.Y, other.Y) && object.Equals(this.Z, other.Z);
+		}
+
+		public override int GetHashCode()
+		{
+			int hashCode = 0;
+			unchecked {
+				hashCode += 1000000007 * X.GetHashCode();
+				hashCode += 1000000009 * Y.GetHashCode();
+				hashCode += 1000000021 * Z.GetHashCode();
+			}
+			return hashCode;
+		}
+
+		public static bool operator ==(Vector3 lhs, Vector3 rhs) {
+			if (ReferenceEquals(lhs, rhs))
+				return true;
+			if (ReferenceEquals(lhs, null) || ReferenceEquals(rhs, null))
+				return false;
+			return lhs.Equals(rhs);
+		}
+
+		public static bool operator !=(Vector3 lhs, Vector3 rhs) {
+			return !(lhs == rhs);
+		}
+
+		#endregion
 	}
 }

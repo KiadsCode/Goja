@@ -9,7 +9,4 @@ C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\De
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\ikpFlac.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\ikpMP3.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\irrKlang.NET4.dll
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\OpenTK.dll.config
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\obj\Debug\Goja.csproj.AssemblyReference.cache
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\obj\Debug\Goja.csproj.CoreCompileInputs.cache
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\obj\Debug\Goja.csproj.CopyComplete
+C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\obj\Debug\Goja.csprojResolveAssemblyReference.cache

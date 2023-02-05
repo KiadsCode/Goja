@@ -16,8 +16,4 @@ C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bi
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\BackGroundTile.png
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\rs.png
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Game.ico
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\OpenTK.dll.config
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csproj.AssemblyReference.cache
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csproj.SuggestedBindingRedirects.cache
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csproj.CoreCompileInputs.cache
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csproj.CopyComplete
+C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csprojResolveAssemblyReference.cache

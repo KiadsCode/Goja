@@ -57,43 +57,47 @@ namespace Goja
 			Height = height;
 		}
 		
+		#region Equals and GetHashCode implementation
+		public override bool Equals(object obj)
+		{
+			HitBox other = obj as HitBox;
+				if (other == null)
+					return false;
+						return this.Width == other.Width && this.Height == other.Height && this.X == other.X && this.Y == other.Y;
+		}
+
+		public override int GetHashCode()
+		{
+			int hashCode = 0;
+			unchecked {
+				hashCode += 1000000007 * Width.GetHashCode();
+				hashCode += 1000000009 * Height.GetHashCode();
+				hashCode += 1000000021 * X.GetHashCode();
+				hashCode += 1000000033 * Y.GetHashCode();
+			}
+			return hashCode;
+		}
+
+		public static bool operator ==(HitBox lhs, HitBox rhs) {
+			if (ReferenceEquals(lhs, rhs))
+				return true;
+			if (ReferenceEquals(lhs, null) || ReferenceEquals(rhs, null))
+				return false;
+			return lhs.Equals(rhs);
+		}
+
+		public static bool operator !=(HitBox lhs, HitBox rhs) {
+			return !(lhs == rhs);
+		}
+
+		#endregion
+		
 		public bool Intersects(HitBox value)
 		{
 			return Left < value.Right &&
 				Right > value.Left &&
 				Top > value.Bottom &&
 				Bottom < value.Top;
-		}
-
-		private void DrawHitBox(Vector3 color, float left, float right, float top, float bottom)
-		{
-			GL.Color3(color.X, color.Y, color.Z);
-			GL.Vertex2(left, top);
-			GL.Vertex2(left, bottom);
-			GL.Vertex2(right, bottom);
-			GL.Vertex2(right, top);
-			GL.Color3(1.0f, 1.0f, 1.0f);
-		}
-		public void Draw(Vector3 color, Size gameSize, bool linesType)
-		{
-			float left = Left / gameSize.Width;
-			float top = Top / gameSize.Height;
-			float bottom = Bottom / gameSize.Height;
-			float right = Right / gameSize.Width;
-			if(linesType)
-			{
-				GL.LineWidth(3);
-				GL.Begin(PrimitiveType.LineLoop);
-				DrawHitBox(color, left, right, top, bottom);
-				GL.End();
-				GL.LineWidth(1);
-			}
-			else
-			{
-				GL.Begin(PrimitiveType.Quads);
-				DrawHitBox(color, left, right, top, bottom);
-				GL.End();
-			}
 		}
 	}
 }
