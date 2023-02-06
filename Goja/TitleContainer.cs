@@ -6,17 +6,7 @@ namespace Goja
 {
     public static class TitleContainer
     {
-        private static char[] badCharacters = new char[]
-		{
-			':',
-			'*',
-			'?',
-			'"',
-			'<',
-			'>',
-			'|'
-		};
-
+        private static char[] _badCharacters = new char[] {	':', '*', '?', '"', '<', '>', '|' };
         public static Stream OpenStream(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -54,13 +44,11 @@ namespace Goja
             }
             return result;
         }
-
         internal static bool IsPathAbsolute(string path)
         {
             path = TitleContainer.GetCleanPath(path);
             return TitleContainer.IsCleanPathAbsolute(path);
         }
-
         internal static string GetCleanPath(string path)
         {
             path = path.Replace('/', '\\');
@@ -101,22 +89,15 @@ namespace Goja
             }
             return path;
         }
-
         private static int CollapseParentDirectory(ref string path, int position, int removeLength)
         {
             int num = path.LastIndexOf('\\', position - 1) + 1;
             path = path.Remove(num, position - num + removeLength);
             return Math.Max(num - 1, 1);
         }
-
         private static bool IsCleanPathAbsolute(string path)
         {
-            return path.IndexOfAny(TitleContainer.badCharacters) >= 0 || path.StartsWith("\\") || (path.StartsWith("..\\") || path.Contains("\\..\\") || path.EndsWith("\\..") || path == "..");
-        }
-
-        // Note: this type is marked as 'beforefieldinit'.
-        static TitleContainer()
-        {
+            return path.IndexOfAny(TitleContainer._badCharacters) >= 0 || path.StartsWith("\\") || (path.StartsWith("..\\") || path.Contains("\\..\\") || path.EndsWith("\\..") || path == "..");
         }
     }
 }

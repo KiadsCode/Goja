@@ -24,7 +24,7 @@ namespace Goja
 		{
 			get
 			{
-				return X - Width * 2;
+				return X + Width * 2;
 			}
 		}
 		public float Right
@@ -38,14 +38,14 @@ namespace Goja
 		{
 			get
 			{
-				return Y + Height * 2;
+				return Y;
 			}
 		}
 		public float Bottom
 		{
 			get
 			{
-				return Y;
+				return Y - Height * 2;
 			}
 		}
 		
@@ -55,6 +55,13 @@ namespace Goja
 			Y = y;
 			Width = width;
 			Height = height;
+		}
+		public bool Intersects(HitBox value)
+		{
+			return Left > value.Right &&
+				Right < value.Left &&
+				Top > value.Bottom &&
+				Bottom < value.Top;
 		}
 		
 		#region Equals and GetHashCode implementation
@@ -92,12 +99,5 @@ namespace Goja
 
 		#endregion
 		
-		public bool Intersects(HitBox value)
-		{
-			return Left < value.Right &&
-				Right > value.Left &&
-				Top > value.Bottom &&
-				Bottom < value.Top;
-		}
 	}
 }

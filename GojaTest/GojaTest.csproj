@@ -65,6 +65,12 @@
     <None Include="Content\BackGroundTile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\bonk_7zPAD7C.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\expl.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\rs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -77,11 +83,6 @@
       <Project>{50EE6A06-E3E8-43CF-A10C-58CFBAD15388}</Project>
       <Name>Goja</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\expl.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content" />

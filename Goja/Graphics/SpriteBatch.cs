@@ -7,9 +7,8 @@
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
-using OpenTK.Graphics.OpenGL;
-using System.Drawing.Imaging;
 using System.Drawing;
+using OpenTK.Graphics.OpenGL;
 
 namespace Goja.Graphics
 {
@@ -33,7 +32,7 @@ namespace Goja.Graphics
 
             float x = position.X / game.Width;
             float y = position.Y / game.Width;
-            float renerYA = (position.Y + texture.Bitmap.Height * 2) / game.Height;
+            float renerYA = (position.Y - texture.Bitmap.Height * 2) / game.Height;
             float renerYB = (position.Y) / game.Height;
 
             GL.MatrixMode(MatrixMode.Modelview);
@@ -46,8 +45,8 @@ namespace Goja.Graphics
 
             GL.Rotate(1, 0.0f, 0.0f, 0.0f);
             GL.Color3(color.X, color.Y, color.Z);
-            GL.TexCoord2(0.0f, -1.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(1.0f, -1.0f); GL.Vertex2(x, renerYA);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYA);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(x, renerYA);
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
@@ -62,7 +61,7 @@ namespace Goja.Graphics
 
             float x = pos.X / game.Width;
             float y = pos.Y / game.Width;
-            float renerYA = (pos.Y + texture.Bitmap.Height * 2) / game.Height;
+            float renerYA = (pos.Y - texture.Bitmap.Height * 2) / game.Height;
             float renerYB = (pos.Y) / game.Height;
 
             GL.MatrixMode(MatrixMode.Modelview);
@@ -74,10 +73,10 @@ namespace Goja.Graphics
             GL.Begin(PrimitiveType.Quads);
 
             GL.Color3(1.0f, 1.0f, 1.0f);
-            GL.TexCoord2(0.0f, -1.0f); GL.Vertex2((pos.X - texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(1.0f, -1.0f); GL.Vertex2(x, renerYA);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(x, renerYA);
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(x, renerYB);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X - texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
             GL.End();
@@ -90,7 +89,7 @@ namespace Goja.Graphics
 
             float x = pos.X / game.Width;
             float y = pos.Y / game.Width;
-            float renerYA = (pos.Y + texture.Bitmap.Height * 2) / game.Height;
+            float renerYA = (pos.Y - texture.Bitmap.Height * 2) / game.Height;
             float renerYB = (pos.Y) / game.Height;
 
             GL.MatrixMode(MatrixMode.Modelview);
@@ -102,10 +101,10 @@ namespace Goja.Graphics
             GL.Begin(PrimitiveType.Quads);
 
             GL.Color3(color.X, color.Y, color.Z);
-            GL.TexCoord2(0.0f, -1.0f); GL.Vertex2((pos.X - texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(1.0f, -1.0f); GL.Vertex2(x, renerYA);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(x, renerYA);
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(x, renerYB);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X - texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
             GL.End();
@@ -148,6 +147,47 @@ namespace Goja.Graphics
                 DrawHitBoxBase(color, left, right, top, bottom);
 				GL.End();
 			}
+		}
+        #endregion
+        #region Primitives Drawing
+        public void DrawRectangle(Vector2 position, Vector2 size, bool fill, Vector3 color)
+        {
+        	Vector2 positionGL = Goja.Utils.Convert.ToGLVector2(position, _game.Width, _game.Height);
+        	
+        	GL.Color3(color.X, color.Y, color.Z);
+        	if(fill)
+        		GL.Begin(PrimitiveType.Quads);
+        	else
+        		GL.Begin(PrimitiveType.LineLoop);
+        	GL.Vertex2(positionGL.X, positionGL.Y);
+        	GL.Vertex2(positionGL.X + (size.X / _game.Width) * 2, positionGL.Y);
+        	GL.Vertex2(positionGL.X + (size.X / _game.Width) * 2, positionGL.Y - (size.Y / _game.Height) * 2);
+        	GL.Vertex2(positionGL.X, positionGL.Y - (size.Y / _game.Height) * 2);
+        	
+        	GL.End();
+        	GL.Color3(1.0f, 1.0f, 1.0f);
+        }
+        public void DrawCircle(Vector2 position, float radius, bool fill, Vector3 color)
+        {
+        	Vector2 positionGL = Goja.Utils.Convert.ToGLVector2(position, _game.Width, _game.Height);
+        	float cx = positionGL.X;
+        	float cy = positionGL.Y;
+        	int polygons = 25;
+        	radius = radius / 100f;
+        	GL.Color3(color.X, color.Y, color.Z);
+        	if(fill)
+        		GL.Begin(PrimitiveType.Polygon);
+        	else
+        		GL.Begin(PrimitiveType.LineLoop);
+    		for (int ii = 0; ii < polygons; ii++)
+    		{
+    			float theta = 2.0f * 3.1415926f * (float)ii / (float)polygons;
+    			float x = radius * (float)Math.Sin(theta);
+        		float y = radius * (float)Math.Cos(theta);
+        		GL.Vertex2(x + cx, y + cy);
+    		}
+    		GL.End();
+    		GL.Color3(1.0f, 1.0f, 1.0f);
 		}
         #endregion
         

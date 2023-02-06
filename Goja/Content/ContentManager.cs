@@ -1,20 +1,28 @@
-﻿using Goja.Audio;
-using Goja.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
+﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Goja.Audio;
+using Goja.Graphics;
 using OpenTK.Graphics.OpenGL;
-using OpenTK.Audio.OpenAL;
 
 namespace Goja.Content
 {
-    public class ContentManager
-    {
+	public class ContentManager
+	{
+		private string[] _imageFormats = {
+    		"png",
+    		"bmp",
+    		"jpg",
+    		"jpeg"
+    	};
+    	private string[] _soundFormats = 
+    	{
+    		"mp3",
+    		"ogg",
+    		"wav"
+    	};
     	private ContentFilesContainer _contentFilesContainer = new ContentFilesContainer();
         private string _rootDirectory = string.Empty;
 
@@ -28,35 +36,107 @@ namespace Goja.Content
         {
         	_contentFilesContainer.UnloadAll();
         }
-
-        public T Load<T>(string assetName)
+        
+        public void PreLoad<T>(string assetName)
         {
-            T file = default(T);
             object obj = new object();
+            string AssetPath = _rootDirectory + "\\" + assetName;
             
             if(!_contentFilesContainer.Contains(assetName))
             {
             	if(typeof(T) == typeof(Texture2D)) 
             	{
-                    using (Stream stream = TitleContainer.OpenStream(_rootDirectory + assetName))
+            		AssetPath = AssetPathCorrecter(AssetPath, _imageFormats);
+                    using (Stream stream = TitleContainer.OpenStream(AssetPath))
                     {
                         Texture2D texture = LoadTexture2D(stream);
                         obj = texture;
-                        _contentFilesContainer.Add(assetName, obj);
                         stream.Close();
                     }
                 }
+            	if(typeof(T) == typeof(SoundEffect))
+            	{
+            		AssetPath = AssetPathCorrecter(AssetPath, _soundFormats);
+            		using (Stream stream = TitleContainer.OpenStream(AssetPath))
+            		{
+            			obj = LoadSoundEffect(stream);
+            			stream.Close();
+            		}
+            	}
+            	_contentFilesContainer.Add(AssetPath, obj);
             }
             else
             	obj = _contentFilesContainer.Load(assetName);
 
-            bool objIsntT = (obj is T) == false;
+            bool objIsntT = !(obj is T);
+            if (objIsntT)
+                throw new Exception("Argument isn\'t same type as asset");
+        }
+
+        public T Load<T>(string assetName)
+        {
+            T file = default(T);
+            object obj = new object();
+            string AssetPath = _rootDirectory + "\\" + assetName;
+            
+            if(!_contentFilesContainer.Contains(assetName))
+            {
+            	if(typeof(T) == typeof(Texture2D)) 
+            	{
+            		AssetPath = AssetPathCorrecter(AssetPath, _imageFormats);
+                    using (Stream stream = TitleContainer.OpenStream(AssetPath))
+                    {
+                        Texture2D texture = LoadTexture2D(stream);
+                        obj = texture;
+                        stream.Close();
+                    }
+                }
+            	if(typeof(T) == typeof(SoundEffect))
+            	{
+            		AssetPath = AssetPathCorrecter(AssetPath, _soundFormats);
+            		using (Stream stream = TitleContainer.OpenStream(AssetPath))
+            		{
+            			obj = LoadSoundEffect(stream);
+            			stream.Close();
+            		}
+            	}
+            	_contentFilesContainer.Add(AssetPath, obj);
+            }
+            else
+            	obj = _contentFilesContainer.Load(assetName);
+
+            bool objIsntT = !(obj is T);
             if (objIsntT)
                 throw new Exception("Argument isn\'t same type as asset");
 
             file = (T)obj;
             return file;
         }
+        private string AssetPathCorrecter(string AssetPath, string[] keyWords)
+        {
+            if (!File.Exists(AssetPath))
+            {
+                for (int i = 0; i < keyWords.Length; i++)
+                {
+                    if (File.Exists(AssetPath + "." + keyWords[i]))
+                    {
+                        AssetPath = AssetPath + "." + keyWords[i];
+                        break;
+                    }
+                }
+            }
+
+            return AssetPath;
+        }
+
+		private static object LoadSoundEffect(Stream stream)
+		{
+			byte[] data = Goja.Utils.Convert.StreamToByteArray(stream);
+			SoundEffect snd = new SoundEffect(data);
+			object obj = snd;
+			return obj;
+		}
+
         private Texture2D LoadTexture2D(Stream stream)
         {
             Bitmap bitmap = new Bitmap(Image.FromStream(stream));

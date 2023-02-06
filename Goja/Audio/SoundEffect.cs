@@ -1,5 +1,4 @@
-﻿using System.IO;
-using IrrKlang;
+﻿using IrrKlang;
 
 namespace Goja.Audio
 {
@@ -33,20 +32,11 @@ namespace Goja.Audio
                 _sound.Volume = value / 100;
             }
         }
-
-        public SoundEffect(UnmanagedMemoryStream stream)
-        {
-            byte[] data = Goja.Utils.Convert.ToByteArray(stream);
-            _source = AudioShared.Engine.AddSoundSourceFromMemory(data, "mp3");
-        }
-        public SoundEffect(MemoryStream stream)
-        {
-            byte[] data = Goja.Utils.Convert.ToByteArray(stream);
-            _source = AudioShared.Engine.AddSoundSourceFromMemory(data, "mp3");
-        }
-        public SoundEffect(byte[] stream)
+        internal SoundEffect(byte[] stream)
         {
             _source = AudioShared.Engine.AddSoundSourceFromMemory(stream, "mp3");
+            Play();
+            Stop();
         }
 
         public uint Length

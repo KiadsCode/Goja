@@ -250,9 +250,7 @@ namespace Goja
 		{
 			Content = new ContentManager(@"");
 			_spriteBatch = new SpriteBatch(this);
-			
 			Console.WriteLine("Goja API version: " + GOJA_VERSION);
-			
 			_gameWindow.Run(UpdateRate, FrameRate);
 		}
 	}

@@ -10,14 +10,21 @@ namespace Goja.Utils
 			return new Vector2(a.X / gameWidth, a.Y / gameHeight);
 		}
 
-        public static byte[] ToByteArray(UnmanagedMemoryStream stream)
+        public static byte[] UnmanagedMemoryStreamToByteArray(UnmanagedMemoryStream stream)
         {
             MemoryStream mem = new MemoryStream();
             stream.CopyTo(mem);
             byte[] data = mem.ToArray();
             return data;
         }
-        public static byte[] ToByteArray(MemoryStream stream)
+        public static byte[] StreamToByteArray(Stream stream)
+		{
+        	MemoryStream mem = new MemoryStream();
+        	stream.CopyTo(mem);
+        	byte[] data = mem.ToArray();
+        	return data;
+    	}
+        public static byte[] MemoryStreamToByteArray(MemoryStream stream)
         {
             byte[] data = stream.ToArray();
             return data;
