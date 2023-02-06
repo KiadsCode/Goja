@@ -86,9 +86,9 @@ namespace GojaTest
 		
 		protected override void Draw(double elapsed)
 		{
-			SpriteBatch.Draw(ds, Vector2.Zero, new Vector3(1.0f, 1.0f, 1.0f));
+			SpriteBatch.Draw(ds, Vector2.Zero);
 			DrawTriangle();
-			SpriteBatch.Draw(texture, go.PhysicBody.Transform, new Vector3(1.0f, 1.0f, 1.0f));
+			SpriteBatch.Draw(texture, go.PhysicBody.Transform);
 			if(box.Intersects(boxB))
             	SpriteBatch.DrawHitBox(boxB, new Vector3(1.0f, 0.0f, 0.0f), false);
             if (box.Intersects(boxC))

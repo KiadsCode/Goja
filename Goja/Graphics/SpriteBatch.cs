@@ -28,7 +28,7 @@ namespace Goja.Graphics
         public void Draw(Texture2D texture, Vector2 pos, Vector3 color, Vector2 origin)
         {
             Game game = _game;
-            Vector2 position = new Vector2(pos.X + origin.X, pos.Y - origin.Y);
+            Vector2 position = new Vector2(pos.X - origin.X, pos.Y + origin.Y);
 
             float x = position.X / game.Width;
             float y = position.Y / game.Width;
@@ -46,8 +46,8 @@ namespace Goja.Graphics
             GL.Rotate(1, 0.0f, 0.0f, 0.0f);
             GL.Color3(color.X, color.Y, color.Z);
             GL.TexCoord2(-1.0f, 1.0f); GL.Vertex2(x, renerYA);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((position.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((position.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
             GL.TexCoord2(-1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
