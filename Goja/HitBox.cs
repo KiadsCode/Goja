@@ -24,14 +24,14 @@ namespace Goja
 		{
 			get
 			{
-				return X + Width * 2;
+				return X;
 			}
 		}
 		public float Right
 		{
 			get
 			{
-				return X;
+				return X + Width * 2;
 			}
 		}
 		public float Top
@@ -58,8 +58,8 @@ namespace Goja
 		}
 		public bool Intersects(HitBox value)
 		{
-			return Left > value.Right &&
-				Right < value.Left &&
+			return Left < value.Right &&
+				Right > value.Left &&
 				Top > value.Bottom &&
 				Bottom < value.Top;
 		}
