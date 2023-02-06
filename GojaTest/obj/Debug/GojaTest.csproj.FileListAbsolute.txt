@@ -18,3 +18,4 @@ C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bi
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\obj\Debug\GojaTest.csprojResolveAssemblyReference.cache
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\bonk_7zPAD7C.mp3
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\expl.wav
+C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\GojaTest\bin\Debug\Content\playerTest.png

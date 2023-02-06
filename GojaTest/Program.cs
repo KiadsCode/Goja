@@ -43,7 +43,7 @@ namespace GojaTest
 			UpdateIcon("Game.ico");
 			
 			texture = Content.Load<Texture2D>(@"rs");
-			ds = Content.Load<Texture2D>(@"BackGroundTile");
+			ds = Content.Load<Texture2D>(@"playerTest");
 			Content.PreLoad<SoundEffect>(@"expl");
 			//Console.WriteLine(sfx.Paused);
 			base.LoadContent();
@@ -107,7 +107,6 @@ namespace GojaTest
             GL.Vertex2(0.65, 0.0);
             GL.Color3(1.0f, 1.0f, 1.0f);
             GL.End();
-            
         }
 	}
 	class Program

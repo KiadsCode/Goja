@@ -45,10 +45,10 @@ namespace Goja.Graphics
 
             GL.Rotate(1, 0.0f, 0.0f, 0.0f);
             GL.Color3(color.X, color.Y, color.Z);
+            GL.TexCoord2(-1.0f, 1.0f); GL.Vertex2(x, renerYA);
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(x, renerYA);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((position.X - texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(-1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
             GL.End();
@@ -73,10 +73,10 @@ namespace Goja.Graphics
             GL.Begin(PrimitiveType.Quads);
 
             GL.Color3(1.0f, 1.0f, 1.0f);
+            GL.TexCoord2(-1.0f, 1.0f); GL.Vertex2(x, renerYA);
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(x, renerYA);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(-1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
             GL.End();
@@ -101,10 +101,10 @@ namespace Goja.Graphics
             GL.Begin(PrimitiveType.Quads);
 
             GL.Color3(color.X, color.Y, color.Z);
+            GL.TexCoord2(-1.0f, 1.0f); GL.Vertex2(x, renerYA);
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(x, renerYA);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(-1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
             GL.End();
@@ -172,7 +172,7 @@ namespace Goja.Graphics
         	Vector2 positionGL = Goja.Utils.Convert.ToGLVector2(position, _game.Width, _game.Height);
         	float cx = positionGL.X;
         	float cy = positionGL.Y;
-        	int polygons = 25;
+			const int polygons = 25;
         	radius = radius / 100f;
         	GL.Color3(color.X, color.Y, color.Z);
         	if(fill)
@@ -181,7 +181,8 @@ namespace Goja.Graphics
         		GL.Begin(PrimitiveType.LineLoop);
     		for (int ii = 0; ii < polygons; ii++)
     		{
-    			float theta = 2.0f * 3.1415926f * (float)ii / (float)polygons;
+				float pi = Convert.ToSingle(Math.PI);
+    			float theta = 2.0f * pi * (float)ii / (float)polygons;
     			float x = radius * (float)Math.Sin(theta);
         		float y = radius * (float)Math.Cos(theta);
         		GL.Vertex2(x + cx, y + cy);
