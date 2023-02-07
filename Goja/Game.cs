@@ -41,7 +41,7 @@ namespace Goja
 	#endregion
 
 		private SpriteBatch _spriteBatch;
-		public const string GOJA_VERSION = "1.0.5";
+		public const string GOJA_VERSION = "1.0.7";
 		private ContentManager _contentManager;
 		private float _frameTime = 0;
 		private float _fpsRaw = 0;

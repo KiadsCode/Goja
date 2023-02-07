@@ -138,6 +138,10 @@ namespace Goja.Input
 		{
 			switch (key)
 			{
+				case Keys.Alt:
+					return Alt;
+				case Keys.CapsLock:
+					return CapsLock;
 				case Keys.Cancel:
 					return this.Cancel;
 				case Keys.Enter:
