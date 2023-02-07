@@ -49,9 +49,6 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Goja.Input">
-      <HintPath>..\Goja.Input\Debug\Goja.Input.dll</HintPath>
-    </Reference>
     <Reference Include="irrKlang.NET4">
       <HintPath>..\..\..\..\Рабочий стол\irrKlang.NET4.dll</HintPath>
     </Reference>
@@ -81,6 +78,13 @@
     <Compile Include="GameComponentsCollection.cs" />
     <Compile Include="Graphics\SpriteBatch.cs" />
     <Compile Include="Graphics\Texture2D.cs" />
+    <Compile Include="Input\MouseButtons.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Input\Keyboard.cs" />
+    <Compile Include="Input\KeyboardState.cs" />
+    <Compile Include="Input\Keys.cs" />
+    <Compile Include="Input\Mouse.cs" />
+    <Compile Include="Input\MouseState.cs" />
     <Compile Include="MathHelper.cs" />
     <Compile Include="PhysicBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

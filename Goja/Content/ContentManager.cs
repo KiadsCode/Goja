@@ -11,18 +11,33 @@ namespace Goja.Content
 {
 	public class ContentManager
 	{
-		private string[] _imageFormats = {
-    		"png",
-    		"bmp",
-    		"jpg",
-    		"jpeg"
-    	};
-    	private string[] _soundFormats = 
-    	{
-    		"mp3",
-    		"ogg",
-    		"wav"
-    	};
+		public string[] ImageFormats
+		{
+			get
+			{
+				string[] data = new string[] 
+				{
+    				"png",
+    				"bmp",
+    				"jpg",
+    				"jpeg"
+				};
+				return data;
+			}
+		}
+		public string[] SoundFormats
+		{
+			get
+			{
+				string[] data = new string[] 
+    			{
+    				"mp3",
+    				"ogg",
+    				"wav"
+    			};
+				return data;
+			}
+		}
     	private ContentFilesContainer _contentFilesContainer = new ContentFilesContainer();
         private string _rootDirectory = string.Empty;
 
@@ -46,7 +61,7 @@ namespace Goja.Content
             {
             	if(typeof(T) == typeof(Texture2D)) 
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, _imageFormats);
+            		AssetPath = AssetPathCorrecter(AssetPath, ImageFormats);
                     using (Stream stream = TitleContainer.OpenStream(AssetPath))
                     {
                         Texture2D texture = LoadTexture2D(stream);
@@ -56,7 +71,7 @@ namespace Goja.Content
                 }
             	if(typeof(T) == typeof(SoundEffect))
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, _soundFormats);
+            		AssetPath = AssetPathCorrecter(AssetPath, SoundFormats);
             		using (Stream stream = TitleContainer.OpenStream(AssetPath))
             		{
             			obj = LoadSoundEffect(stream);
@@ -83,7 +98,7 @@ namespace Goja.Content
             {
             	if(typeof(T) == typeof(Texture2D)) 
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, _imageFormats);
+            		AssetPath = AssetPathCorrecter(AssetPath, ImageFormats);
                     using (Stream stream = TitleContainer.OpenStream(AssetPath))
                     {
                         Texture2D texture = LoadTexture2D(stream);
@@ -93,7 +108,7 @@ namespace Goja.Content
                 }
             	if(typeof(T) == typeof(SoundEffect))
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, _soundFormats);
+            		AssetPath = AssetPathCorrecter(AssetPath, SoundFormats);
             		using (Stream stream = TitleContainer.OpenStream(AssetPath))
             		{
             			obj = LoadSoundEffect(stream);

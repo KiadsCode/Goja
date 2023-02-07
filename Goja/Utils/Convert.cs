@@ -29,10 +29,7 @@ namespace Goja.Utils
             byte[] data = stream.ToArray();
             return data;
         }
-        public static Vector2 ToVector2(GojaCPP.VECTOR2F obj)
-		{
-			return new Vector2(obj.X, obj.Y);
-		}
+
 		public static Vector2 ToVector2(float[] obj)
 		{
 			try

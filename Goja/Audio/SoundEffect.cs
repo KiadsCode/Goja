@@ -36,7 +36,9 @@ namespace Goja.Audio
         {
             _source = AudioShared.Engine.AddSoundSourceFromMemory(stream, "mp3");
             Play();
+            Volume = 0f;
             Stop();
+            Volume = 100f;
         }
 
         public uint Length

@@ -11,8 +11,35 @@ namespace Goja
 	/// <summary>
 	/// Description of Window.
 	/// </summary>
-	public class Game
+	public class Game : IDisposable
 	{
+		#region IDisposable implementation
+
+		public void Dispose()
+		{
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				lock (this)
+				{
+					GameComponent[] array = new GameComponent[this._components.Count];
+					this._components.CopyTo(array, 0);
+					for (int i = 0; i < array.Length; i++)
+					{
+						IDisposable disposable = array[i] as IDisposable;
+						if (disposable != null)
+							disposable.Dispose();
+					}
+				}
+			}
+		}
+
+	#endregion
+
 		private SpriteBatch _spriteBatch;
 		public const string GOJA_VERSION = "1.0.5";
 		private ContentManager _contentManager;
@@ -25,6 +52,7 @@ namespace Goja
 		private GameWindow _gameWindow;
 		private Camera _camera = new Camera();
 		
+		#region Properties
 		public Camera Camera
 		{
 			get
@@ -45,6 +73,7 @@ namespace Goja
 			}
 		}
 
+		// disable once ConvertToAutoProperty
 		public ContentManager Content
 		{
 			get
@@ -56,20 +85,29 @@ namespace Goja
 				_contentManager = value;
 			}
 		}
-
-		private void UpdateFPS(double elapsed)
+		public int Width
 		{
-			_frameTime += (float)elapsed;
-			_fpsRaw++;
-			if (_frameTime >= 1.0f)
+			get
 			{
-				_fps = _fpsRaw;
-				_frameTime = 0.0f;
-				_fpsRaw = 0;
+				return _gameWindow.Size.Width;
+			}
+			protected set
+			{
+				_gameWindow.Size = new System.Drawing.Size(value, _gameWindow.Size.Height);
 			}
 		}
-
-		public int Width
+		public int Height
+		{
+			get
+			{
+				return _gameWindow.Size.Height;
+			}
+			protected set
+			{
+				_gameWindow.Size = new System.Drawing.Size(_gameWindow.Size.Width, value);
+			}
+		}
+		public int GLWidth
 		{
 			get
 			{
@@ -80,7 +118,7 @@ namespace Goja
 				_gameWindow.Width = value;
 			}
 		}
-		public int Height
+		public int GLHeight
 		{
 			get
 			{
@@ -89,6 +127,59 @@ namespace Goja
 			protected set
 			{
 				_gameWindow.Height = value;
+			}
+		}
+		/// <summary>
+		/// Drawing sprites
+		/// </summary>
+		public SpriteBatch SpriteBatch
+		{
+			get
+			{
+				return _spriteBatch;
+			}
+		}
+
+		/// <summary>
+		/// returning Vertical Synchronize value
+		/// </summary>
+		public bool IsVSync
+		{
+			get;
+			protected set;
+		}
+		
+		/// <summary>
+		/// Game Title value
+		/// </summary>
+		public string Title
+		{
+			get
+			{
+				return _gameWindow.Title;
+			}
+			protected set
+			{
+				_gameWindow.Title = value;
+			}
+		}
+		
+		/// <summary>
+		/// Components list
+		/// </summary>
+		public GameComponentsCollection Components { get { return _components; } }
+		
+		#endregion
+
+		private void UpdateFPS(double elapsed)
+		{
+			_frameTime += (float)elapsed;
+			_fpsRaw++;
+			if (_frameTime >= 1.0f)
+			{
+				_fps = _fpsRaw;
+				_frameTime = 0.0f;
+				_fpsRaw = 0;
 			}
 		}
 
@@ -110,35 +201,14 @@ namespace Goja
 					break;
 			}
 		}
-
+		
+		/// <summary>
+		/// Closing game screen
+		/// </summary>
 		protected void Exit()
 		{
 			_gameWindow.Exit();
-		}
-
-		public SpriteBatch SpriteBatch
-		{
-			get
-			{
-				return _spriteBatch;
-			}
-		}
-
-		public bool IsVSync
-		{
-			get;
-			protected set;
-		}
-		public string Title
-		{
-			get
-			{
-				return _gameWindow.Title;
-			}
-			protected set
-			{
-				_gameWindow.Title = value;
-			}
+			EndRun();
 		}
 		
 		protected void SetCameraPosition(Vector2 position)
@@ -147,7 +217,6 @@ namespace Goja
 			UpdateViewport();
 		}
 
-		public GameComponentsCollection Components { get { return _components; } }
 
 		public Game()
 		{
@@ -164,12 +233,32 @@ namespace Goja
 			UnloadContent();
 		}
 
+		/// <summary>
+		/// Called when graphics resources need to be unloaded.
+		/// Override this method to unload any game-specific graphics resources.
+		/// </summary>
 		protected virtual void UnloadContent()
 		{
 			_contentManager.Unload();
 		}
 
+		/// <summary>
+		/// Starts the drawing of a frame. This method is followed by calls to Draw and EndDraw.
+		/// </summary>
 		protected virtual void BeginDraw()
+		{
+		}
+		/// <summary>
+		/// Ends the drawing of a frame. This method is preceeded by calls to Draw and BeginDraw.
+		/// </summary>
+		protected virtual void EndDraw()
+		{
+		}
+		
+		protected virtual void BeginRun()
+		{
+		}
+		protected virtual void EndRun()
 		{
 		}
 
@@ -195,9 +284,11 @@ namespace Goja
 
 		private void DrawPrivate(object sender, FrameEventArgs e)
 		{
+			BeginDraw();
 			GL.Clear(ClearBufferMask.ColorBufferBit);
             Draw(e.Time);
 			_gameWindow.SwapBuffers();
+			EndDraw();
 		}
 
 		private void UpdatePrivate(object sender, FrameEventArgs e)
@@ -205,10 +296,18 @@ namespace Goja
 			Update(e.Time);
 		}
 
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
 		protected virtual void Draw(double elapsed)
 		{
 		}
-
+	
+        /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+		/// <param name="elapsed"></param>
 		protected virtual void Update(double elapsed)
 		{
 			UpdateFPS(elapsed);
@@ -216,6 +315,21 @@ namespace Goja
 			{
 				if (item.Enabled)
 					item.Update(elapsed);
+			}
+		}
+		
+		public int X
+		{
+			get
+			{
+				return _gameWindow.X;
+			}
+		}
+		public int Y
+		{
+			get
+			{
+				return _gameWindow.Y;
 			}
 		}
 
@@ -251,7 +365,9 @@ namespace Goja
 			Content = new ContentManager(@"");
 			_spriteBatch = new SpriteBatch(this);
 			Console.WriteLine("Goja API version: " + GOJA_VERSION);
+			BeginRun();
 			_gameWindow.Run(UpdateRate, FrameRate);
 		}
+
 	}
 }

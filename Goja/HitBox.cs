@@ -17,9 +17,8 @@ namespace Goja
 	/// </summary>
 	public class HitBox
 	{
-		public int Width;
-		public int Height;
-		public int X, Y;
+		public int X, Y, Width, Height;
+		#region Properties
 		public float Left
 		{
 			get
@@ -48,6 +47,7 @@ namespace Goja
 				return Y - Height * 2;
 			}
 		}
+		#endregion
 		
 		public HitBox(int x, int y, int width, int height)
 		{

@@ -10,12 +10,17 @@ namespace GojaTest
 {
 	public class GGame : Game
 	{
-		HitBox boxB;
-		HitBox boxC = new HitBox(32, -192, 86, 86);
+		private ulong t;
+		private KeyboardState ks;
+		private KeyboardState ksOld;
+		private GameObject go;
+		private World world;
+		private HitBox boxB;
+		private HitBox boxC = new HitBox(32, 32, 86, 86);
         private Texture2D texture;
         private Texture2D ds;
-        HitBox box;
-        SoundEffect sfx;
+        private HitBox box;
+        private SoundEffect sfx;
         
 		protected override void Initialize()
 		{
@@ -23,19 +28,10 @@ namespace GojaTest
 			Title = "Goja engine test";
 			world = new World(this);
 			go = new GameObject(this, world);
-			go.PhysicBody.UpdateMass(100);
+			go.PhysicBody.UpdateMass(150);
 			world.UpdateGravityValue(new Vector2(0, 3));
 			Components.Add(world);
 			base.Initialize();
-		}
-		
-		protected override void BeginDraw()
-		{
-			GL.ClearColor(Color4.CornflowerBlue);
-            Width = 640;
-            Height = 480;
-			
-			base.BeginDraw();
 		}
 		
 		protected override void LoadContent()
@@ -44,19 +40,22 @@ namespace GojaTest
 			
 			texture = Content.Load<Texture2D>(@"rs");
 			ds = Content.Load<Texture2D>(@"playerTest");
-			Content.PreLoad<SoundEffect>(@"expl");
-			//Console.WriteLine(sfx.Paused);
+			sfx = Content.Load<SoundEffect>(@"expl");
+			
+			GL.ClearColor(Color4.CornflowerBlue);
+            Width = 640;
+            Height = 480;
+            
 			base.LoadContent();
 		}
-		KeyboardState ks;
-		KeyboardState ksOld;
-		GameObject go;
-		World world;
 		
 		protected override void Update(double elapsed)
 		{
+			t++;
 			ks = Keyboard.GetState();
-            boxB = new HitBox((int)Vector2.Zero.X, (int)Vector2.Zero.X, ds.Bitmap.Width, ds.Bitmap.Height);
+			Vector2 sinPos = new Vector2((float)Math.Sin(t / 12) * 6, (float)Math.Sin(t / 6) * 6);
+			boxC = new HitBox((int)sinPos.X, (int)sinPos.Y, 86, 86);
+            boxB = new HitBox(0, 0, ds.Bitmap.Width, ds.Bitmap.Height);
             box = new HitBox((int)go.PhysicBody.Transform.X, (int)go.PhysicBody.Transform.Y, texture.Bitmap.Width, texture.Bitmap.Height);
             
             if (ks.IsKeyDown(Keys.Escape))
@@ -89,13 +88,9 @@ namespace GojaTest
 			SpriteBatch.Draw(ds, Vector2.Zero);
 			DrawTriangle();
 			SpriteBatch.Draw(texture, go.PhysicBody.Transform);
-			if(box.Intersects(boxB))
-            	SpriteBatch.DrawHitBox(boxB, new Vector3(1.0f, 0.0f, 0.0f), false);
-            if (box.Intersects(boxC))
-            	SpriteBatch.DrawHitBox(boxC, new Vector3(1.0f, 0.0f, 0.0f), true);
+            SpriteBatch.DrawHitBox(boxC, new Vector3(1.0f, 0.0f, 0.0f), true);
             base.Draw(elapsed);
 		}
-		
 		public void DrawTriangle()
         {			
             GL.Begin(PrimitiveType.Triangles);

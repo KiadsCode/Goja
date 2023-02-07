@@ -5,7 +5,6 @@ C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\De
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\OpenTK.xml
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\obj\Debug\Goja.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\obj\Debug\Goja.pdb
-C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\Goja.Input.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\ikpFlac.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\ikpMP3.dll
 C:\Users\Acer\OneDrive\Документы\SharpDevelop Projects\Goja\Goja\bin\Debug\irrKlang.NET4.dll
