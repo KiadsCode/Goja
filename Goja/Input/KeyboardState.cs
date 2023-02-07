@@ -7,7 +7,6 @@
  * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
  */
 using System;
-using System.Runtime.InteropServices;
 
 namespace Goja.Input
 {

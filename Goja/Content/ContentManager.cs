@@ -61,7 +61,7 @@ namespace Goja.Content
             {
             	if(typeof(T) == typeof(Texture2D)) 
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, ImageFormats);
+            		AssetPath = CorrectAssetPath(AssetPath, ImageFormats);
                     using (Stream stream = TitleContainer.OpenStream(AssetPath))
                     {
                         Texture2D texture = LoadTexture2D(stream);
@@ -69,12 +69,12 @@ namespace Goja.Content
                         stream.Close();
                     }
                 }
-            	if(typeof(T) == typeof(SoundEffect))
+            	if(typeof(T) == typeof(WavSound))
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, SoundFormats);
+            		AssetPath = CorrectAssetPath(AssetPath, SoundFormats);
             		using (Stream stream = TitleContainer.OpenStream(AssetPath))
             		{
-            			obj = LoadSoundEffect(stream);
+            			obj = LoadWavSound(stream);
             			stream.Close();
             		}
             	}
@@ -98,7 +98,7 @@ namespace Goja.Content
             {
             	if(typeof(T) == typeof(Texture2D)) 
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, ImageFormats);
+            		AssetPath = CorrectAssetPath(AssetPath, ImageFormats);
                     using (Stream stream = TitleContainer.OpenStream(AssetPath))
                     {
                         Texture2D texture = LoadTexture2D(stream);
@@ -106,12 +106,12 @@ namespace Goja.Content
                         stream.Close();
                     }
                 }
-            	if(typeof(T) == typeof(SoundEffect))
+            	if(typeof(T) == typeof(WavSound))
             	{
-            		AssetPath = AssetPathCorrecter(AssetPath, SoundFormats);
+            		AssetPath = CorrectAssetPath(AssetPath, SoundFormats);
             		using (Stream stream = TitleContainer.OpenStream(AssetPath))
             		{
-            			obj = LoadSoundEffect(stream);
+            			obj = LoadWavSound(stream);
             			stream.Close();
             		}
             	}
@@ -127,27 +127,26 @@ namespace Goja.Content
             file = (T)obj;
             return file;
         }
-        private string AssetPathCorrecter(string AssetPath, string[] keyWords)
+        private string CorrectAssetPath(string assetPath, string[] fileFormats)
         {
-            if (!File.Exists(AssetPath))
+            if (!File.Exists(assetPath))
             {
-                for (int i = 0; i < keyWords.Length; i++)
+                for (int i = 0; i < fileFormats.Length; i++)
                 {
-                    if (File.Exists(AssetPath + "." + keyWords[i]))
+                    if (File.Exists(assetPath + "." + fileFormats[i]))
                     {
-                        AssetPath = AssetPath + "." + keyWords[i];
+                        assetPath = assetPath + "." + fileFormats[i];
                         break;
                     }
                 }
             }
 
-            return AssetPath;
+            return assetPath;
         }
 
-		private static object LoadSoundEffect(Stream stream)
+		private object LoadWavSound(Stream stream)
 		{
-			byte[] data = Goja.Utils.Convert.StreamToByteArray(stream);
-			SoundEffect snd = new SoundEffect(data);
+			WavSound snd = new WavSound(stream);
 			object obj = snd;
 			return obj;
 		}

@@ -13,7 +13,12 @@ namespace Goja
     internal static class NativeMethods
     {
         [DllImport("user32.dll")]
-        public static extern bool GetAsyncKeyState(int vVal);
+        public static extern IntPtr GetDesktopWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ThrowOnUnmappableChar = true, BestFitMapping = false)]
+        public static extern IntPtr FindWindow([MarshalAs(UnmanagedType.LPTStr)] String atom, [MarshalAs(UnmanagedType.LPTStr)] String title);
+		[DllImport("user32.dll", ExactSpelling = true)]
+		public static extern bool GetAsyncKeyState(int vkey);
         [DllImport("user32.dll")]
         public static extern bool GetCursorPos(out POINT point);
         [DllImport("user32.dll")]

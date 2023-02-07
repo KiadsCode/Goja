@@ -49,9 +49,6 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="irrKlang.NET4">
-      <HintPath>..\..\..\..\Рабочий стол\irrKlang.NET4.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK">
       <HintPath>..\..\..\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
     </Reference>
@@ -68,8 +65,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AudioShared.cs" />
-    <Compile Include="Audio\SoundEffect.cs" />
+    <Compile Include="Audio\AlsaDevice.cs" />
+    <Compile Include="Audio\AuData.cs" />
+    <Compile Include="Audio\AudioData.cs" />
+    <Compile Include="Audio\AudioDevice.cs" />
+    <Compile Include="Audio\AudioFormat.cs" />
+    <Compile Include="Audio\NativeSound.cs" />
+    <Compile Include="Audio\SystemSound.cs" />
+    <Compile Include="Audio\SystemSounds.cs" />
+    <Compile Include="Audio\WavData.cs" />
+    <Compile Include="Audio\WavSound.cs" />
+    <Compile Include="Audio\Win32SoundPlayer.cs" />
     <Compile Include="HitBox.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Content\ContentFilesContainer.cs" />
@@ -97,13 +103,5 @@
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="ikpFlac.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ikpMP3.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

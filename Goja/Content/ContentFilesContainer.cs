@@ -10,10 +10,6 @@ namespace Goja.Content
 	{
 		private Dictionary<string, object> _files = new Dictionary<string, object>();
 		
-		public ContentFilesContainer()
-		{
-		}
-		
 		public IEnumerable<object> Files
 		{
 			get { return _files.Values; }

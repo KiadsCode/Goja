@@ -20,7 +20,7 @@ namespace GojaTest
         private Texture2D texture;
         private Texture2D ds;
         private HitBox box;
-        private SoundEffect sfx;
+        private WavSound sfx;
         
 		protected override void Initialize()
 		{
@@ -40,7 +40,7 @@ namespace GojaTest
 			
 			texture = Content.Load<Texture2D>(@"rs");
 			ds = Content.Load<Texture2D>(@"playerTest");
-			sfx = Content.Load<SoundEffect>(@"expl");
+			sfx = Content.Load<WavSound>(@"expl");
 			
 			GL.ClearColor(Color4.CornflowerBlue);
             Width = 640;

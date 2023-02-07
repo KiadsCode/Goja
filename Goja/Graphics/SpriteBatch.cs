@@ -30,8 +30,8 @@ namespace Goja.Graphics
             Game game = _game;
             Vector2 position = new Vector2(pos.X - origin.X, pos.Y + origin.Y);
 
-            float x = position.X / game.Width;
-            float y = position.Y / game.Width;
+            float x = position.X / game.GLWidth;
+            float y = position.Y / game.GLHeight;
             float renerYA = (position.Y - texture.Bitmap.Height * 2) / game.Height;
             float renerYB = (position.Y) / game.Height;
 
@@ -59,10 +59,10 @@ namespace Goja.Graphics
         {
             Game game = _game;
 
-            float x = pos.X / game.Width;
-            float y = pos.Y / game.Width;
-            float renerYA = (pos.Y - texture.Bitmap.Height * 2) / game.Height;
-            float renerYB = (pos.Y) / game.Height;
+            float x = pos.X / game.GLWidth;
+            float y = pos.Y / game.GLHeight;
+            float renerYA = (pos.Y - texture.Bitmap.Height * 2) / game.GLHeight;
+            float renerYB = (pos.Y) / game.GLHeight;
 
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
@@ -74,8 +74,8 @@ namespace Goja.Graphics
 
             GL.Color3(1.0f, 1.0f, 1.0f);
             GL.TexCoord2(-1.0f, 1.0f); GL.Vertex2(x, renerYA);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.GLWidth, renerYA);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.GLWidth, renerYB);
             GL.TexCoord2(-1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
@@ -87,10 +87,10 @@ namespace Goja.Graphics
         {
             Game game = _game;
 
-            float x = pos.X / game.Width;
-            float y = pos.Y / game.Width;
-            float renerYA = (pos.Y - texture.Bitmap.Height * 2) / game.Height;
-            float renerYB = (pos.Y) / game.Height;
+            float x = pos.X / game.GLWidth;
+            float y = pos.Y / game.GLHeight;
+            float renerYA = (pos.Y - texture.Bitmap.Height * 2) / game.GLHeight;
+            float renerYB = (pos.Y) / game.GLHeight;
 
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
@@ -102,8 +102,8 @@ namespace Goja.Graphics
 
             GL.Color3(color.X, color.Y, color.Z);
             GL.TexCoord2(-1.0f, 1.0f); GL.Vertex2(x, renerYA);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYA);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.Width, renerYB);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.GLWidth, renerYA);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2((pos.X + texture.Bitmap.Width * 2) / game.GLWidth, renerYB);
             GL.TexCoord2(-1.0f, 0.0f); GL.Vertex2(x, renerYB);
             GL.Color3(1.0f, 1.0f, 1.0f);
 
@@ -124,7 +124,7 @@ namespace Goja.Graphics
 		}
 		public void DrawHitBox(HitBox hitBox, Vector3 color, bool linesType)
 		{
-			Size gameSize = new Size(_game.Width, _game.Height);
+			Size gameSize = new Size(_game.GLWidth, _game.GLHeight);
 			float Left = hitBox.Left;
 			float Right = hitBox.Right;
 			float Top = hitBox.Top;
